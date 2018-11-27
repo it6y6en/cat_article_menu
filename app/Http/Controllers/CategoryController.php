@@ -26,7 +26,12 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //dd(Category::with('children')->where('parent_id', 0)->get());
+        return view('category.create', [
+            'category' => [],
+            'categories' => Category::with('children')->where('parent_id', 0)->get(),
+            'delimiter' => '',
+        ]);
     }
 
     /**
@@ -37,7 +42,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->all());
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -48,7 +55,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('category.show', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -59,8 +68,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
-    }
+        return view('category.edit', [
+            'category' => $category,
+            'categories' => Category::with('children')->where('parent_id', 0)->get(),
+            'delimiter' => '',
+        ]);    }
 
     /**
      * Update the specified resource in storage.
@@ -71,7 +83,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        return redirect()->route('category.index');
     }
 
     /**

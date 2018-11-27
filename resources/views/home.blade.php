@@ -15,6 +15,9 @@
                     @endif
 
                     You are logged in!
+                    <hr>
+                    <p><a href="{{ route('category.index') }}">Categories</a></p>
+                    <p><a href="{{ route('article.index') }}">Articles</a></p>
                 </div>
             </div>
         </div>

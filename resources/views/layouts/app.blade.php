@@ -72,6 +72,14 @@
             </div>
         </nav>
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @include('layouts._menu')
+            </ul>
+          </div>
+        </nav>
+
         <main class="py-4">
             @yield('content')
         </main>

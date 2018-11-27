@@ -3,26 +3,33 @@
 @section('content')
 
     <div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th class="text-right">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($categories as $category)
+        <a href="{{ route('category.create') }}" class="btn btn-primary">Create</a>
+
+        <hr>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{ $category->title ?? 'no title' }}</td>
-                    <td><a class="btn btn-primary" href="{{ Route('category.edit', $category) }}">Edit</a></td>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Parent</th>
+                    <th class="text-right">Action</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="2">Missing</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($categories as $category)
+                    <tr>
+                        <td>{{ $category->id ?? '' }}</td>
+                        <td><a href="{{ route('category.show',$category) }}">{{ $category->title ?? 'no title' }}</a></td>
+                        <td>{{ $category->parent_id ?? '-' }}</td>
+                        <td><a class="btn btn-primary" href="{{ Route('category.edit', $category) }}">Edit</a></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="2">Missing</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 
 @endsection
