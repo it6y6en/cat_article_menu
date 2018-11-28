@@ -14,6 +14,9 @@ class CreateArticleCategoryTable extends Migration
     public function up()
     {
         Schema::create('article_category', function (Blueprint $table) {
+            //в моём MySQL 5.7 стоит дефолт MyISAM
+            //в конфиге ларавела дефолт = null
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('article_id')->unsigned();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
